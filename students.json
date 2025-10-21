@@ -1,0 +1,25 @@
+{
+  "students": [
+    {
+      "id": "1234",
+      "name": "Nusy Akhter",
+      "grade": "A",
+      "class": "Class 6",
+      "photo": "https://mugishatumusifu.github.io/images/nusy-akhter.jpg"
+    },
+    {
+      "id": "5678",
+      "name": "John Doe",
+      "grade": "B+",
+      "class": "Class 7",
+      "photo": "https://mugishatumusifu.github.io/images/john-doe.jpg"
+    },
+    {
+      "id": "91011",
+      "name": "Jane Smith",
+      "grade": "A-",
+      "class": "Class 8",
+      "photo": "https://mugishatumusifu.github.io/images/jane-smith.jpg"
+    }
+  ]
+}
