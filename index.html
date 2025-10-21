@@ -96,6 +96,7 @@
     <div class="container">
         <div id="student-card" class="student-card" style="display:none;">
             <div class="profile-header">
+                <img id="student-photo" src="" alt="Student Photo" class="profile-photo">
     <h1 id="student-name"></h1>
 </div>
 
@@ -139,6 +140,7 @@
         });
 
         function displayStudent(student) {
+            document.getElementById('student-photo').src = student.photo || 'https://mugishatumusifu.github.io/student-profiles/images/default-photo.png';
             document.getElementById('student-name').textContent = student.name;
             document.getElementById('student-id').textContent = student.id;
             document.getElementById('student-grade').textContent = student.grade;
