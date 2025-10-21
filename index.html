@@ -456,8 +456,8 @@ body {
                             <div class="info-value" id="student-id"></div>
                         </div>
                         <div class="info-item">
-                            <div class="info-label">Grade</div>
-                            <div class="info-value" id="student-grade"></div>
+                            <div class="info-label">Gender</div>
+                            <div class="info-value" id="student-gender"></div>
                         </div>
                         <div class="info-item">
                             <div class="info-label">Class</div>
@@ -474,11 +474,11 @@ body {
                         <div class="projects-grid">
                             <div class="info-item">
                                 <div class="info-label">Status</div>
-                                <div class="info-value">Active Student</div>
+                                <div class="info-value" id="student-class"></div>
                             </div>
                             <div class="info-item">
-                                <div class="info-label">Enrollment</div>
-                                <div class="info-value">Regular</div>
+                                <div class="info-label">Active</div>
+                                <div class="info-value"><p style="color: white; background: Green; padding: 7px; border-radius: 3px;">Yes</p></div>
                             </div>
                         </div>
                     </div>
@@ -546,7 +546,8 @@ body {
             
             document.getElementById('student-name').textContent = student.name;
             document.getElementById('student-id').textContent = student.id;
-            document.getElementById('student-grade').textContent = student.grade;
+            document.getElementById('student-gender').textContent = student.gender;
+            document.getElementById('student-status').textContent = student.status;
             document.getElementById('student-class').textContent = student.class;
             document.getElementById('fallback-message').style.display = 'none';
             document.getElementById('student-card').style.display = 'block';
