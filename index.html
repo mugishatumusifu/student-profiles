@@ -4,110 +4,346 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Profile</title>
-
-    
-  <link rel="icon" type="image/png" href="/images/icon/icon.PNG">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/icon/icon.PNG">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f0f4f8;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
-            color: #333;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
         }
+        
+        /* Decorative background elements */
+        body::before,
+        body::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        body::before {
+            width: 500px;
+            height: 500px;
+            top: -200px;
+            left: -200px;
+        }
+        body::after {
+            width: 400px;
+            height: 400px;
+            bottom: -150px;
+            right: -150px;
+        }
+        
         .container {
             width: 100%;
-            max-width: 400px;
-            padding: 20px;
-            box-sizing: border-box;
+            max-width: 900px;
+            position: relative;
+            z-index: 1;
         }
-        .student-card {
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        
+        .profile-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             overflow: hidden;
-            text-align: center;
-            animation: fadeIn 0.5s ease-in-out;
-            transition: transform 0.3s ease;
+            width: 100%;
+            animation: slideIn 0.6s ease-out;
         }
-        .student-card:hover {
-            transform: translateY(-5px);
-        }
-        .profile-header {
-            background: linear-gradient(135deg, #5a9df8, #3b82f6);
-            padding: 30px 20px;
-            color: white;
-        }
-        .profile-photo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 4px solid white;
-            object-fit: cover;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            animation: scaleIn 0.5s ease;
-        }
-        h1 {
-            font-size: 1.8em;
-            margin: 0;
-            font-weight: 600;
-        }
-        .profile-details {
-            padding: 20px;
-            text-align: left;
-        }
-        .profile-details p {
-            margin: 10px 0;
-            font-size: 1.1em;
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px solid #e5e7eb;
-            padding-bottom: 10px;
-        }
-        .profile-details strong {
-            color: #3b82f6;
-        }
-        .fallback-message {
-            display: none;
-            padding: 40px 20px;
-            font-size: 1.2em;
-            color: #ef4444;
-            text-align: center;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        @keyframes scaleIn {
-            from { transform: scale(0.8); opacity: 0; }
+        
+        .card-header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .card-header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        
+        .card-body {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            background: white;
+        }
+        
+        .left-section {
+            background: linear-gradient(180deg, #4facfe 0%, #00f2fe 100%);
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+        }
+        
+        .profile-photo-container {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: zoomIn 0.5s ease;
+            overflow: hidden;
+        }
+        
+        @keyframes zoomIn {
+            from { transform: scale(0.5); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
-        @media (max-width: 480px) {
-            .container { padding: 10px; }
-            .profile-photo { width: 100px; height: 100px; }
-            h1 { font-size: 1.5em; }
-            .profile-details p { font-size: 1em; }
+        
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-photo-container svg {
+            width: 100px;
+            height: 100px;
+            fill: #4facfe;
+        }
+        
+        .student-name {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-align: center;
+            color: white;
+        }
+        
+        .student-role {
+            font-size: 1.1em;
+            font-weight: 400;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+        
+        .edit-icon {
+            margin-top: auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .edit-icon:hover {
+            transform: scale(1.2);
+        }
+        
+        .edit-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+        }
+        
+        .right-section {
+            padding: 40px;
+        }
+        
+        .section-title {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+            font-weight: 600;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 0.95em;
+            margin-bottom: 5px;
+        }
+        
+        .info-value {
+            color: #7f8c8d;
+            font-size: 1em;
+        }
+        
+        .projects-section {
+            margin-top: 30px;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .social-links a {
+            color: #4facfe;
+            transition: transform 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+        }
+        
+        .social-links svg {
+            width: 30px;
+            height: 30px;
+        }
+        
+        .fallback-message {
+            display: none;
+            padding: 60px 40px;
+            font-size: 1.3em;
+            color: white;
+            text-align: center;
+            background: rgba(239, 68, 68, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.6s ease-out;
+        }
+        
+        @media (max-width: 768px) {
+            .card-body {
+                grid-template-columns: 1fr;
+            }
+            .left-section {
+                padding: 30px 20px;
+            }
+            .right-section {
+                padding: 30px 20px;
+            }
+            .info-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .card-header h1 {
+                font-size: 1.8em;
+            }
+            body::before {
+                width: 300px;
+                height: 300px;
+            }
+            body::after {
+                width: 250px;
+                height: 250px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div id="student-card" class="student-card" style="display:none;">
-            <div class="profile-header">
-                <img id="student-photo" src="" alt="Student Photo" class="profile-photo" onerror="this.src='images/default-photo.png'">
-    <h1 id="student-name"></h1>
-</div>
-
-            <div class="profile-details">
-                <p><strong>Registration No:</strong> <span id="student-id"></span></p>
-                <p><strong>Grade:</strong> <span id="student-grade"></span></p>
-                <p><strong>Class:</strong> <span id="student-class"></span></p>
-                <p><strong>Year:</strong> 2025-2026</p>
+        <div id="student-card" class="profile-card" style="display:none;">
+            <div class="card-header">
+                <h1>PROFILE <span style="color: white;">CARD</span></h1>
+            </div>
+            
+            <div class="card-body">
+                <div class="left-section">
+                    <div class="profile-photo-container">
+                        <img id="student-photo" src="" alt="Student Photo" class="profile-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <svg viewBox="0 0 24 24" style="display:none;">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <div class="student-name" id="student-name"></div>
+                    <div class="student-role">Student</div>
+                    <div class="edit-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="right-section">
+                    <h2 class="section-title">Information</h2>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Registration No:</div>
+                            <div class="info-value" id="student-id"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Grade:</div>
+                            <div class="info-value" id="student-grade"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Class:</div>
+                            <div class="info-value" id="student-class"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Year:</div>
+                            <div class="info-value">2025-2026</div>
+                        </div>
+                    </div>
+                    
+                    <div class="projects-section">
+                        <h2 class="section-title">Academic Status</h2>
+                        <div class="projects-grid">
+                            <div class="info-item">
+                                <div class="info-label">Status:</div>
+                                <div class="info-value">Active Student</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Enrollment:</div>
+                                <div class="info-value">Regular</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" title="Facebook">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
+                            </svg>
+                        </a>
+                        <a href="#" title="YouTube">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                            </svg>
+                        </a>
+                        <a href="#" title="Twitter">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -143,15 +379,25 @@
         });
 
         function displayStudent(student) {
-    document.getElementById('student-photo').src = student.photo || 'images/default-photo.png';
-    document.getElementById('student-name').textContent = student.name;
-    document.getElementById('student-id').textContent = student.id;
-    document.getElementById('student-grade').textContent = student.grade;
-    document.getElementById('student-class').textContent = student.class;
-    document.getElementById('fallback-message').style.display = 'none';
-    document.getElementById('student-card').style.display = 'block';
-}
-
+            const photoImg = document.getElementById('student-photo');
+            const photoSvg = photoImg.nextElementSibling;
+            
+            if (student.photo) {
+                photoImg.src = student.photo;
+                photoImg.style.display = 'block';
+                photoSvg.style.display = 'none';
+            } else {
+                photoImg.style.display = 'none';
+                photoSvg.style.display = 'block';
+            }
+            
+            document.getElementById('student-name').textContent = student.name;
+            document.getElementById('student-id').textContent = student.id;
+            document.getElementById('student-grade').textContent = student.grade;
+            document.getElementById('student-class').textContent = student.class;
+            document.getElementById('fallback-message').style.display = 'none';
+            document.getElementById('student-card').style.display = 'block';
+        }
 
         function showFallback() {
             document.getElementById('student-card').style.display = 'none';
