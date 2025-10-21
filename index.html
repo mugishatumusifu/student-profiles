@@ -14,7 +14,7 @@
         }
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -24,96 +24,148 @@
             overflow: hidden;
         }
         
-        /* Decorative background elements */
+        /* Animated background elements */
         body::before,
         body::after {
             content: '';
             position: absolute;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            animation: float 8s ease-in-out infinite;
         }
         body::before {
-            width: 500px;
-            height: 500px;
-            top: -200px;
-            left: -200px;
+            width: 600px;
+            height: 600px;
+            top: -250px;
+            left: -250px;
+            background: radial-gradient(circle, rgba(79, 172, 254, 0.3) 0%, rgba(0, 242, 254, 0.1) 100%);
+            animation-delay: 0s;
         }
         body::after {
-            width: 400px;
-            height: 400px;
-            bottom: -150px;
-            right: -150px;
+            width: 500px;
+            height: 500px;
+            bottom: -200px;
+            right: -200px;
+            background: radial-gradient(circle, rgba(240, 147, 251, 0.3) 0%, rgba(245, 87, 108, 0.1) 100%);
+            animation-delay: 2s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.1); }
         }
         
         .container {
             width: 100%;
-            max-width: 900px;
+            max-width: 950px;
             position: relative;
             z-index: 1;
         }
         
         .profile-card {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.2);
             overflow: hidden;
             width: 100%;
-            animation: slideIn 0.6s ease-out;
+            animation: slideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
         @keyframes slideIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(50px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
         
         .card-header {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            padding: 40px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 50%, #43e97b 100%);
+            padding: 45px;
             text-align: center;
             position: relative;
+            overflow: hidden;
+        }
+        
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         
         .card-header h1 {
-            color: #2c3e50;
-            font-size: 2.5em;
+            color: #1e293b;
+            font-size: 2.8em;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             margin-bottom: 5px;
             text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
         }
         
         .card-body {
             display: grid;
-            grid-template-columns: 350px 1fr;
+            grid-template-columns: 380px 1fr;
             background: white;
+            position: relative;
         }
         
         .left-section {
-            background: linear-gradient(180deg, #4facfe 0%, #00f2fe 100%);
-            padding: 40px 30px;
+            background: linear-gradient(180deg, #4facfe 0%, #00f2fe 50%, #43e97b 100%);
+            padding: 50px 35px;
             display: flex;
             flex-direction: column;
             align-items: center;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .left-section::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
         }
         
         .profile-photo-container {
-            width: 150px;
-            height: 150px;
+            width: 170px;
+            height: 170px;
             border-radius: 50%;
             background: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            animation: zoomIn 0.5s ease;
+            margin-bottom: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 0 0 8px rgba(255, 255, 255, 0.2);
+            animation: zoomIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
             overflow: hidden;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+        
+        .profile-photo-container:hover {
+            transform: scale(1.05);
         }
         
         @keyframes zoomIn {
-            from { transform: scale(0.5); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+            from { transform: scale(0) rotate(-180deg); opacity: 0; }
+            to { transform: scale(1) rotate(0deg); opacity: 1; }
         }
         
         .profile-photo {
@@ -123,120 +175,249 @@
         }
         
         .profile-photo-container svg {
-            width: 100px;
-            height: 100px;
+            width: 110px;
+            height: 110px;
             fill: #4facfe;
         }
         
         .student-name {
-            font-size: 1.8em;
+            font-size: 2em;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             text-align: center;
             color: white;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
         }
         
         .student-role {
-            font-size: 1.1em;
-            font-weight: 400;
+            font-size: 1.2em;
+            font-weight: 500;
             opacity: 0.95;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
         }
         
         .edit-icon {
             margin-top: auto;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
         }
         
         .edit-icon:hover {
-            transform: scale(1.2);
+            transform: scale(1.2) rotate(15deg);
+            background: rgba(255, 255, 255, 0.3);
         }
         
         .edit-icon svg {
             width: 40px;
             height: 40px;
             fill: white;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
         }
         
         .right-section {
-            padding: 40px;
+            padding: 50px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
         }
         
         .section-title {
-            font-size: 1.5em;
-            color: #2c3e50;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e0e0e0;
-            font-weight: 600;
+            font-size: 1.6em;
+            color: #1e293b;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid transparent;
+            background: linear-gradient(90deg, #4facfe, #00f2fe, #43e97b) left bottom no-repeat;
+            background-size: 100% 3px;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
         
         .info-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-bottom: 40px;
+            gap: 30px;
+            margin-bottom: 45px;
         }
         
         .info-item {
             display: flex;
             flex-direction: column;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(79, 172, 254, 0.1);
+        }
+        
+        .info-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(79, 172, 254, 0.3);
+            border-color: rgba(79, 172, 254, 0.3);
         }
         
         .info-label {
-            font-weight: 600;
-            color: #2c3e50;
-            font-size: 0.95em;
-            margin-bottom: 5px;
+            font-weight: 700;
+            color: #4facfe;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .info-value {
-            color: #7f8c8d;
-            font-size: 1em;
+            color: #1e293b;
+            font-size: 1.1em;
+            font-weight: 600;
         }
         
         .projects-section {
-            margin-top: 30px;
+            margin-top: 35px;
         }
         
         .projects-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 25px;
+            gap: 30px;
         }
         
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-top: 30px;
+            gap: 25px;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(79, 172, 254, 0.1);
         }
         
         .social-links a {
-            color: #4facfe;
-            transition: transform 0.3s ease;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
         }
         
         .social-links a:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 10px 30px rgba(79, 172, 254, 0.5);
         }
         
         .social-links svg {
-            width: 30px;
-            height: 30px;
+            width: 24px;
+            height: 24px;
+            fill: white;
         }
         
+        /* Enhanced Error Message */
         .fallback-message {
             display: none;
-            padding: 60px 40px;
-            font-size: 1.3em;
-            color: white;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 60px 50px;
+            border-radius: 25px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
             text-align: center;
-            background: rgba(239, 68, 68, 0.9);
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            animation: slideIn 0.6s ease-out;
+            animation: slideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .error-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 40px rgba(238, 90, 111, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+            position: relative;
+        }
+        
+        .error-icon::before {
+            content: '';
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            border: 3px solid rgba(255, 107, 107, 0.3);
+            border-radius: 50%;
+            animation: ripple 2s ease-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes ripple {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        
+        .error-icon svg {
+            width: 60px;
+            height: 60px;
+            fill: white;
+        }
+        
+        .fallback-message h2 {
+            font-size: 2em;
+            color: #1e293b;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .fallback-message p {
+            font-size: 1.1em;
+            color: #64748b;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .retry-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(79, 172, 254, 0.3);
+        }
+        
+        .retry-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(79, 172, 254, 0.5);
+        }
+        
+        .retry-button svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
         }
         
         @media (max-width: 768px) {
@@ -244,25 +425,34 @@
                 grid-template-columns: 1fr;
             }
             .left-section {
-                padding: 30px 20px;
+                padding: 40px 25px;
             }
             .right-section {
-                padding: 30px 20px;
+                padding: 40px 25px;
             }
             .info-grid,
             .projects-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
             }
             .card-header h1 {
-                font-size: 1.8em;
+                font-size: 2em;
             }
-            body::before {
+            body::before,
+            body::after {
                 width: 300px;
                 height: 300px;
             }
-            body::after {
-                width: 250px;
-                height: 250px;
+            .fallback-message {
+                padding: 40px 30px;
+            }
+            .error-icon {
+                width: 100px;
+                height: 100px;
+            }
+            .error-icon svg {
+                width: 50px;
+                height: 50px;
             }
         }
     </style>
@@ -295,19 +485,19 @@
                     <h2 class="section-title">Information</h2>
                     <div class="info-grid">
                         <div class="info-item">
-                            <div class="info-label">Registration No:</div>
+                            <div class="info-label">Registration No</div>
                             <div class="info-value" id="student-id"></div>
                         </div>
                         <div class="info-item">
-                            <div class="info-label">Grade:</div>
+                            <div class="info-label">Grade</div>
                             <div class="info-value" id="student-grade"></div>
                         </div>
                         <div class="info-item">
-                            <div class="info-label">Class:</div>
+                            <div class="info-label">Class</div>
                             <div class="info-value" id="student-class"></div>
                         </div>
                         <div class="info-item">
-                            <div class="info-label">Year:</div>
+                            <div class="info-label">Academic Year</div>
                             <div class="info-value">2025-2026</div>
                         </div>
                     </div>
@@ -316,11 +506,11 @@
                         <h2 class="section-title">Academic Status</h2>
                         <div class="projects-grid">
                             <div class="info-item">
-                                <div class="info-label">Status:</div>
+                                <div class="info-label">Status</div>
                                 <div class="info-value">Active Student</div>
                             </div>
                             <div class="info-item">
-                                <div class="info-label">Enrollment:</div>
+                                <div class="info-label">Enrollment</div>
                                 <div class="info-value">Regular</div>
                             </div>
                         </div>
@@ -348,7 +538,19 @@
         </div>
 
         <div id="fallback-message" class="fallback-message">
-            Student not found. Please check the QR code or ID.
+            <div class="error-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                </svg>
+            </div>
+            <h2>Student Not Found</h2>
+            <p>We couldn't find the student profile you're looking for. Please check the QR code or student ID and try again.</p>
+            <button class="retry-button" onclick="location.reload()">
+                <svg viewBox="0 0 24 24">
+                    <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                </svg>
+                Retry
+            </button>
         </div>
     </div>
 
