@@ -96,7 +96,7 @@
     <div class="container">
         <div id="student-card" class="student-card" style="display:none;">
             <div class="profile-header">
-                <img id="student-photo" src="" alt="Student Photo" class="profile-photo">
+                <img id="student-photo" src="" alt="Student Photo" class="profile-photo" onerror="this.src='images/default-photo.png'">
     <h1 id="student-name"></h1>
 </div>
 
@@ -140,14 +140,15 @@
         });
 
         function displayStudent(student) {
-            document.getElementById('student-photo').src = student.photo || 'https://mugishatumusifu.github.io/student-profiles/images/default-photo.png';
-            document.getElementById('student-name').textContent = student.name;
-            document.getElementById('student-id').textContent = student.id;
-            document.getElementById('student-grade').textContent = student.grade;
-            document.getElementById('student-class').textContent = student.class;
-            document.getElementById('fallback-message').style.display = 'none';
-            document.getElementById('student-card').style.display = 'block';
-        }
+    document.getElementById('student-photo').src = student.photo || 'images/default-photo.png';
+    document.getElementById('student-name').textContent = student.name;
+    document.getElementById('student-id').textContent = student.id;
+    document.getElementById('student-grade').textContent = student.grade;
+    document.getElementById('student-class').textContent = student.class;
+    document.getElementById('fallback-message').style.display = 'none';
+    document.getElementById('student-card').style.display = 'block';
+}
+
 
         function showFallback() {
             document.getElementById('student-card').style.display = 'none';
